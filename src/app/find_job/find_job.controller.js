@@ -9,12 +9,16 @@
   function FindJobController(NgTableParams,$resource) {
     var vm = this;
 
-    var data = [{name: "Moroni", age: 50},{name: "Tom Moroni", age: 30}];
-    vm.tableParams = new NgTableParams({}, { dataset: data});
+    var Api = $resource('http://localhost:8081/scrape');
 
-    var scrape = $resource('http://localhost:8081/scrape');
-    scrape.get({}, function(result){
-
+    this.tableParams = new NgTableParams({}, {
+      getData: function(params) {
+        // ajax request to api
+        return Api.get(params.url()).$promise.then(function(data) {
+          params.total(data.inlineCount); // recal. page nav controls
+          return data.results;
+        });
+      }
     });
 
   }

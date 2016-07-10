@@ -9,10 +9,10 @@
 
 <table ng-table="vm.tableParams" class="table" show-filter="true">
     <tr ng-repeat="user in $data">
-        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-            {{user.name}}</td>
-        <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
-            {{user.age}}</td>
+        <td title="'職缺'" filter="{ 'title': 'text'}" sortable="'title'">
+            <a href="{{user.href}}" target="_blank">{{user.title}}</a></td>
+        <td title="'薪水'" filter="{ 'monthly_wage.lower_bound': 'number'}" sortable="'age'">
+            {{user.monthly_wage.lower_bound}}</td>
     </tr>
 </table>
 

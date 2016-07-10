@@ -6,10 +6,9 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, $httpProvider) {
+  function config($logProvider, toastrConfig) {
 
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
     // Enable log
     $logProvider.debugEnabled(true);
 
