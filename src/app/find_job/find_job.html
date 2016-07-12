@@ -11,7 +11,7 @@
     <tr ng-repeat="user in $data">
         <td title="'職缺'" filter="{ 'title': 'text'}" sortable="'title'">
             <a href="{{user.href}}" target="_blank">{{user.title}}</a></td>
-        <td title="'薪水'" filter="{ 'monthly_wage.lower_bound': 'number'}" sortable="'age'">
+        <td title="'薪水'" filter="{ 'monthly_wage.lower_bound': 'number'}" sortable="'monthly_wage.lower_bound'">
             {{user.monthly_wage.lower_bound}}</td>
     </tr>
 </table>

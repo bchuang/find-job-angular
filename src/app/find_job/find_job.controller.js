@@ -6,24 +6,25 @@
     .controller('FindJobController', FindJobController);
 
   /** @ngInject */
-  function FindJobController(NgTableParams,$resource) {
+  function FindJobController(NgTableParams,$resource,$log) {
+    var label = "FindJobController";
     var vm = this;
-
     var Api = $resource('http://localhost:8081/scrape');
 
-    this.tableParams = new NgTableParams({}, {
-      getData: function(params) {
-        // ajax request to api
-        return Api.get(params.url()).$promise.then(function(data) {
-          params.total(data.inlineCount); // recal. page nav controls
-          return data.results;
-        });
-      }
+    var jobsList = [];
+
+    Api.get().$promise.then(function(data) {
+      jobsList = data.results;
+
+      vm.tableParams = new NgTableParams({}, {
+        dataset: jobsList
+      });
+
     });
 
   }
 
-  FindJobController.$inject = ["NgTableParams", "$resource"];
+  FindJobController.$inject = ["NgTableParams", "$resource","$log"];
 
 
 })();
