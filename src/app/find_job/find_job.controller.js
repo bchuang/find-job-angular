@@ -9,7 +9,7 @@
   function FindJobController(NgTableParams,$resource,$log) {
     var label = "FindJobController";
     var vm = this;
-    var Api = $resource('http://localhost:8081/scrape');
+    var Api = $resource('http://'+ location.hostname +':8081/scrape');
 
     var jobsList = [];
 
